@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소득 구조 변화 데이터 분석</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        body { 
+            font-family: 'Noto Sans KR', sans-serif; 
+            background-color: #f1f5f9; 
+        }
+        .chart-container { 
+            position: relative; 
+            height: 300px; 
+            width: 100%; 
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- 내비게이션 바 -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <h1 class="text-xl font-bold text-blue-700">소득 데이터 분석 리포트</h1>
+            <button onclick="location.reload()" class="bg-blue-600 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-700 transition flex items-center gap-2 shadow-md">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+                홈으로
+            </button>
+        </div>
+    </nav>
+
+    <!-- 헤더 섹션 -->
+    <header class="max-w-6xl mx-auto px-4 py-12 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">전반적 소득 수준 상승과 부의 집중 현상 분석</h2>
+        <div class="bg-white p-6 rounded-2xl shadow-sm inline-block border-l-8 border-blue-600">
+            <p class="text-lg text-slate-700 leading-relaxed italic">
+                "19년 대비 23년 평균소득은 약 17%, 중위소득은 약 18% 증가했으나,<br>
+                평균과 중위소득의 격차가 증가하며 개개인의 소득격차가 심화되고 있습니다."
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 pb-24">
+        
+        <!-- 대시보드 그리드 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <!-- 그래프 1: 평균 및 중위소득 증가율 -->
+            <div class="bg-white p-8 rounded-3xl shadow-lg">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold flex items-center gap-2">
+                        <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
+                        1. 거시 소득 지표 분석 (19년 vs 23년)
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="incomeComparisonChart"></canvas>
+                </div>
+                <div class="mt-6 p-5 bg-blue-50 rounded-2xl">
+                    <h4 class="font-bold text-blue-800 mb-2">데이터 분석:</h4>
+                    <ul class="text-sm space-y-2 text-slate-700">
+                        <li>• <strong>평균소득:</strong> 75 (19년) → 85 (23년)로 약 17% 증가</li>
+                        <li>• <strong>중위소득:</strong> 약 18% 증가 (최저시급 인상 및 인플레이션 영향)</li>
+                        <li>• <strong>진단:</strong> 평균과 중위의 격차 확대로 부의 집중 현상 심화</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 그래프 2: 하위 20% 소득 추이 -->
+            <div class="bg-white p-8 rounded-3xl shadow-lg">
+                <div class="mb-6">
+                    <h3 class="text-xl font-bold flex items-center gap-2">
+                        <span class="w-2 h-6 bg-emerald-500 rounded-full"></span>
+                        2. 소득 하위 20% 기준선 변화
+                    </h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="bottom20TrendChart"></canvas>
+                </div>
+                <div class="mt-6 p-5 bg-emerald-50 rounded-2xl">
+                    <h4 class="font-bold text-emerald-800 mb-2">데이터 분석:</h4>
+                    <ul class="text-sm space-y-2 text-slate-700">
+                        <li>• 116 (19년)에서 시작하여 140 (23년)까지 꾸준히 상승</li>
+                        <li>• <strong>최대 상승폭:</strong> 2021년(125) → 2022년(135) 구간</li>
+                        <li>• <strong>한계:</strong> 물가 상승률과 최저 임금을 고려하면 수치는 매우 낮은 편</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 그래프 3: 소득 격차 심화 (요약 분석) -->
+            <div class="bg-white p-8 rounded-3xl shadow-lg md:col-span-2">
+                <div class="mb-8 text-center">
+                    <h3 class="text-2xl font-bold mb-2">3. 종합 소득 격차 진단</h3>
+                    <p class="text-slate-500 italic">평균값(85)과 시작점(75) 및 분위별 격차 시각화</p>
+                </div>
+                <div class="chart-container" style="height: 200px;">
+                    <canvas id="summaryGapChart"></canvas>
+                </div>
+                <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50">
+                        <h4 class="font-bold text-red-600 mb-3 flex items-center gap-2">
+                            ⚠️ 격차 심화 원인
+                        </h4>
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            최저시급 인상으로 하한선은 올라갔으나, 평균소득과의 격차가 증가하는 것은 상위권의 소득 집중 현상이 완화되지 않고 오히려 심화되고 있음을 데이터가 증명합니다.
+                        </p>
+                    </div>
+                    <div class="p-6 border border-slate-100 rounded-2xl bg-slate-50">
+                        <h4 class="font-bold text-amber-600 mb-3 flex items-center gap-2">
+                            📢 실질 체감도
+                        </h4>
+                        <p class="text-sm leading-relaxed text-slate-600">
+                            하위 20%의 소득이 116에서 140으로 증가했음에도, 물가 상승률을 고려하면 실질적인 삶의 질 개선으로 이어지기에는 부족한 수치입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 최종 요약 섹션 -->
+        <section class="mt-12 bg-slate-800 rounded-3xl p-10 text-white">
+            <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                데이터 분석 최종 요약
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-slate-700/50 p-6 rounded-2xl border border-slate-600">
+                    <h4 class="text-blue-400 font-bold mb-3">소득 상승</h4>
+                    <p class="text-sm text-slate-300">평균 17%, 중위 18% 증가로 전반적인 소득 수치는 우상향함.</p>
+                </div>
+                <div class="bg-slate-700/50 p-6 rounded-2xl border border-slate-600">
+                    <h4 class="text-emerald-400 font-bold mb-3">하위 계층</h4>
+                    <p class="text-sm text-slate-300">하위 20% 기준이 116에서 140으로 상승했으나 체감도는 낮음.</p>
+                </div>
+                <div class="bg-slate-700/50 p-6 rounded-2xl border border-slate-600">
+                    <h4 class="text-red-400 font-bold mb-3">격차 심화</h4>
+                    <p class="text-sm text-slate-300">평균과 중위의 격차 확대로 부의 집중 현상이 오히려 심화됨.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // 자료 1: 평균 및 중위소득 비교 (증가율 중심)
+        new Chart(document.getElementById('incomeComparisonChart'), {
+            type: 'bar',
+            data: {
+                labels: ['평균소득 (17%↑)', '중위소득 (18%↑)'],
+                datasets: [{
+                    label: '증가율 반영 지표',
+                    data: [117, 118], // 19년(100) 기준 증가율 시각화
+                    backgroundColor: ['#1d4ed8', '#3b82f6'],
+                    borderRadius: 12
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { y: { beginAtZero: false, min: 100 } }
+            }
+        });
+
+        // 자료 2: 하위 20% 소득 추이 (116 -> 140)
+        new Chart(document.getElementById('bottom20TrendChart'), {
+            type: 'line',
+            data: {
+                labels: ['2019', '2021', '2022', '2023'],
+                datasets: [{
+                    label: '하위 20% 소득 기준',
+                    data: [116, 125, 135, 140],
+                    borderColor: '#10b981',
+                    borderWidth: 4,
+                    pointBackgroundColor: '#fff',
+                    pointBorderWidth: 3,
+                    pointRadius: 6,
+                    tension: 0.1,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { min: 110 } }
+            }
+        });
+
+        new Chart(document.getElementById('summaryGapChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2019년 평균 (75)', '2023년 평균 (85)'],
+                datasets: [{
+                    label: '평균소득 수치',
+                    data: [75, 85],
+                    backgroundColor: ['#94a3b8', '#1d4ed8'],
+                    borderRadius: 10,
+                    barThickness: 60
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { x: { beginAtZero: true, max: 100 } }
+            }
+        });
+    </script>
+</body>
+</html>
