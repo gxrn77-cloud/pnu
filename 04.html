@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 대학 등록금 계열별 심층 분석 대시보드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f1f5f9; }
+        .chart-container { position: relative; height: 380px; width: 100%; }
+        .card { background: white; border-radius: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0; }
+        .btn-major { transition: all 0.2s ease; border: 1px solid #e2e8f0; font-weight: 500; }
+        .btn-major:hover { border-color: #3b82f6; color: #3b82f6; transform: translateY(-1px); }
+        .btn-active { background-color: #3b82f6 !important; color: white !important; border-color: #3b82f6 !important; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+        /* Floating Home Button Style */
+        .floating-home { position: fixed; top: 2rem; right: 2rem; z-index: 50; }
+    </style>
+</head>
+<body class="p-4 md:p-8 lg:p-12 relative">
+    <!-- Floating Home Button -->
+    <div class="floating-home">
+        <button onclick="updateMajor('전체')" class="bg-slate-900 text-white px-6 py-3 rounded-2xl shadow-2xl font-bold flex items-center gap-2 hover:bg-slate-800 transition-all active:scale-95">
+            🏠 홈으로
+        </button>
+    </div>
+
+    <div class="max-w-7xl mx-auto">
+        <!-- Header Section -->
+        <nav class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-10 gap-6">
+            <div class="space-y-1">
+                <h1 class="text-4xl font-black text-slate-900 tracking-tight mb-2">계열별 등록금 <span class="text-blue-600">심층 리포트</span></h1>
+                <p class="text-slate-500 text-lg font-medium">학과별 지역 분포와 최고가 대학 순위를 실시간으로 분석합니다.</p>
+            </div>
+            <div class="flex flex-wrap gap-2 bg-white p-2 rounded-2xl shadow-sm border border-slate-200">
+                <button onclick="updateMajor('인문사회')" class="btn-major px-5 py-2.5 rounded-xl bg-white">인문사회</button>
+                <button onclick="updateMajor('자연과학')" class="btn-major px-5 py-2.5 rounded-xl bg-white">자연과학</button>
+                <button onclick="updateMajor('공학')" class="btn-major px-5 py-2.5 rounded-xl bg-white">공학</button>
+                <button onclick="updateMajor('예체능')" class="btn-major px-5 py-2.5 rounded-xl bg-white">예체능</button>
+                <button onclick="updateMajor('의학')" class="btn-major px-5 py-2.5 rounded-xl bg-white">의학</button>
+            </div>
+        </nav>
+
+        <!-- Dynamic Summary Indicators -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+            <div class="card p-7 bg-white">
+                <p class="text-xs font-bold text-blue-500 uppercase tracking-widest mb-2">계열 평균</p>
+                <h3 id="statAvg" class="text-3xl font-black text-slate-800 tracking-tighter text-blue-600">712만원</h3>
+            </div>
+            <div class="card p-7">
+                <p class="text-xs font-bold text-amber-500 uppercase tracking-widest mb-2">최고가 지역</p>
+                <h3 id="statMaxRegion" class="text-3xl font-black text-slate-800 tracking-tighter">서울</h3>
+            </div>
+            <div class="card p-7 lg:col-span-2 bg-slate-900 text-white border-none shadow-xl">
+                <p class="text-xs font-bold text-blue-400 uppercase tracking-widest mb-2">전국 최고가 대학 (해당 계열)</p>
+                <h3 id="statTopUniv" class="text-2xl font-black text-white tracking-tight">연세대학교 (서울)</h3>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+            <!-- Left: Regional Distribution Chart -->
+            <div class="card p-8 lg:col-span-2">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-xl font-bold text-slate-800 flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-blue-500 rounded-full"></span>
+                        지역별 평균 등록금 분포
+                    </h2>
+                    <span id="chartLabel" class="text-sm font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-full uppercase">전체 계열 기준</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="regionBarChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Right: Deep Analysis & Ranking -->
+            <div class="space-y-6">
+                <!-- Top 3 Ranking Card -->
+                <div class="card p-8 border-t-4 border-t-blue-500">
+                    <h2 class="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">🏆 계열별 등록금 Top 3</h2>
+                    <ul id="rankList" class="space-y-4">
+                        <!-- Rankings will be injected here -->
+                    </ul>
+                </div>
+
+                <!-- Analysis Text Card -->
+                <div class="card p-8 bg-gradient-to-br from-slate-50 to-white">
+                    <h2 class="text-lg font-bold text-slate-800 mb-4">계열별 특성 분석</h2>
+                    <p id="analysisText" class="text-slate-600 leading-relaxed font-medium">
+                        분석 내용을 불러오는 중입니다...
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Detail Section -->
+        <div class="card p-8 bg-white border-none shadow-sm flex flex-col md:flex-row gap-8 items-center">
+            <div class="md:w-1/3">
+                <h3 class="text-2xl font-black text-slate-800 mb-2">전문가 코멘트</h3>
+                <p class="text-slate-500">데이터가 시사하는 경제적 함의</p>
+            </div>
+            <div class="md:w-2/3">
+                <p id="expertComment" class="text-lg text-slate-700 leading-relaxed italic border-l-4 border-blue-200 pl-6">
+                    수도권 집중 현상이 단순히 지리적 요인이 아닌, 대규모 사립대학의 학과 구성(공학, 예체능 위주)과 밀접하게 연관되어 있음을 보여줍니다.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const majorData = {
+            '전체': {
+                avg: '712만원', maxReg: '서울', topUniv: '연세대학교 (서울)',
+                regions: ['서울', '경기', '강원', '충남', '충북', '경남', '경북'],
+                vals: [784, 752, 645, 698, 632, 628, 640],
+                ranking: [
+                    { name: '연세대학교 (서울)', price: '920만원' },
+                    { name: '추계예술대학교 (서울)', price: '915만원' },
+                    { name: '가천대학교 (경기)', price: '881만원' }
+                ],
+                analysis: '전국 대학교의 평균 등록금은 사립대와 국공립대의 격차가 약 2배에 달합니다. 서울과 경기 지역의 사립대들은 계열에 상관없이 전국 최고 수준의 수업료를 기록하고 있으며, 이는 학생들의 주거비 부담과 맞물려 수도권 진학의 경제적 장벽을 높이고 있습니다.',
+                comment: '수도권 상위 대학들의 높은 등록금은 교육 인프라 비용과 장비 투자비가 반영된 결과이지만, 지역 간 교육 기회의 불균형을 심화시킬 우려가 있습니다.'
+            },
+            '인문사회': {
+                avg: '635만원', maxReg: '서울', topUniv: '연세대학교 (서울)',
+                regions: ['서울', '경기', '강원', '충남', '충북', '경남', '경북'],
+                vals: [680, 650, 580, 610, 590, 550, 560],
+                ranking: [
+                    { name: '연세대학교 (서울)', price: '840만원' },
+                    { name: '가천대학교 (경기)', price: '757만원' },
+                    { name: '한림대학교 (강원)', price: '701만원' }
+                ],
+                analysis: '인문사회 계열은 이론 중심 수업이 많아 실험실습비 비중이 낮아 계열 중 가장 낮은 등록금을 형성합니다. 하지만 서울권 주요 대학은 브랜드 가치와 운영 비용으로 인해 여전히 800만 원 이상의 고액 등록금을 유지 중입니다.',
+                comment: '인문사회 계열은 지역 간 편차가 가장 적으며, 국립대의 경우 사립대의 1/3 수준에서 등록금이 형성되어 공공성이 가장 강한 분야입니다.'
+            },
+            '자연과학': {
+                avg: '715만원', maxReg: '서울', topUniv: '이화여자대학교 (서울)',
+                regions: ['서울', '경기', '강원', '충남', '충북', '경남', '경북'],
+                vals: [750, 720, 650, 680, 660, 640, 655],
+                ranking: [
+                    { name: '이화여자대학교 (서울)', price: '900만원' },
+                    { name: '연세대학교 (서울)', price: '895만원' },
+                    { name: '가천대학교 (경기)', price: '880만원' }
+                ],
+                analysis: '자연과학 계열은 기초 실험 자재와 실습실 운영 비용이 등록금에 반영되어 인문 계열보다 약 12% 높습니다. 특히 서울권 사립 여대와 주요 사립대의 이공계 집중 투자 대학들이 높은 순위를 차지하고 있습니다.',
+                comment: '자연과학 분야의 등록금은 연구 인프라 수준과 비례하며, 경기 지역 사립대들이 서울권 대학들과 대등한 비용을 책정하고 있는 점이 특징입니다.'
+            },
+            '공학': {
+                avg: '754만원', maxReg: '경기', topUniv: '고려대학교 (서울)',
+                regions: ['서울', '경기', '강원', '충남', '충북', '경남', '경북'],
+                vals: [820, 810, 710, 750, 700, 690, 705],
+                ranking: [
+                    { name: '고려대학교 (서울)', price: '965만원' },
+                    { name: '연세대학교 (서울)', price: '960만원' },
+                    { name: '가천대학교 (경기)', price: '956만원' }
+                ],
+                analysis: '공학 계열은 첨단 장비와 기술 교육 실습비로 인해 전통적인 고비용 계열입니다. 경기 지역의 가천대, 아주대 등 공학 특성화 사립대학들이 서울 주요 대학들과 거의 차이가 없는 높은 등록금을 형성하고 있는 것이 눈에 띕니다.',
+                comment: '공대 등록금은 취업률과 연계된 장비 투자 경쟁으로 인해 매년 상승 압박을 가장 크게 받는 분야입니다.'
+            },
+            '예체능': {
+                avg: '810만원', maxReg: '서울', topUniv: '추계예술대학교 (서울)',
+                regions: ['서울', '경기', '강원', '충남', '충북', '경남', '경북'],
+                vals: [890, 880, 750, 790, 730, 710, 720],
+                ranking: [
+                    { name: '추계예술대학교 (서울)', price: '995만원' },
+                    { name: '가천대학교 (경기)', price: '962만원' },
+                    { name: '연세대학교 (서울)', price: '958만원' }
+                ],
+                analysis: '예체능은 실기 중심의 1:1 레슨, 공연/전시 지원비 등으로 인해 인문계열보다 무려 30% 이상 비쌉니다. 특히 서울과 경기 지역의 예술 전문 대학과 사립 대학교들이 연간 1,000만 원에 육박하는 등록금을 받고 있습니다.',
+                comment: '예체능 계열의 높은 등록금은 재능 교육의 기회 비용을 높이며, 저소득층 학생들의 진입 장벽으로 작용하고 있습니다.'
+            },
+            '의학': {
+                avg: '1,017만원', maxReg: '강원', topUniv: '한림대학교 (강원)',
+                regions: ['서울', '경기', '강원', '충남', '충북', '경남', '경북'],
+                vals: [1050, 1037, 1088, 887, 753, 753, 760],
+                ranking: [
+                    { name: '한림대학교 (강원)', price: '1,088만원' },
+                    { name: '연세대학교 (서울)', price: '1,060만원' },
+                    { name: '가천대학교 (경기)', price: '1,037만원' }
+                ],
+                analysis: '의학 계열은 전 지역에서 최상위 등록금을 형성하며, 강원도 소재 한림대학교가 전국에서 가장 높은 의학 등록금을 기록하고 있습니다. 사립 의과대학의 경우 지역에 관계없이 대동소이한 고액 비용을 유지합니다.',
+                comment: '의학 계열은 면허 취득을 위한 고도의 전문 실습과 병원 연계 비용으로 인해 등록금 자체가 타 계열과는 다른 차원의 분포를 보입니다.'
+            }
+        };
+
+        let myChart;
+
+        function initChart() {
+            const ctx = document.getElementById('regionBarChart').getContext('2d');
+            myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: majorData['전체'].regions,
+                    datasets: [{
+                        label: '연 평균 등록금 (단위: 만원)',
+                        data: majorData['전체'].vals,
+                        backgroundColor: function(context) {
+                            const value = context.dataset.data[context.dataIndex];
+                            return value > 1000 ? '#1e293b' : (value > 800 ? '#ef4444' : (value > 700 ? '#3b82f6' : '#cbd5e1'));
+                        },
+                        borderRadius: 12,
+                        barThickness: 48
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: '#f1f5f9' },
+                            ticks: { callback: v => v + '만' }
+                        },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+            updateMajor('전체');
+        }
+
+        function updateMajor(major) {
+            const data = majorData[major];
+            
+            // Stats Update
+            document.getElementById('statAvg').innerText = data.avg;
+            document.getElementById('statMaxRegion').innerText = data.maxReg;
+            document.getElementById('statTopUniv').innerText = data.topUniv;
+            document.getElementById('analysisText').innerText = data.analysis;
+            document.getElementById('expertComment').innerText = data.comment;
+            document.getElementById('chartLabel').innerText = `${major} 계열 기준`;
+
+            // Active Button Style
+            document.querySelectorAll('.btn-major').forEach(btn => {
+                btn.classList.remove('btn-active');
+                if(btn.innerText.includes(major)) btn.classList.add('btn-active');
+            });
+
+            // Ranking Update
+            const rankList = document.getElementById('rankList');
+            rankList.innerHTML = data.ranking.map((univ, i) => `
+                <li class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                    <div class="flex items-center gap-3">
+                        <span class="flex items-center justify-center w-8 h-8 ${i === 0 ? 'bg-amber-400' : 'bg-slate-300'} text-white rounded-lg font-black text-sm">${i+1}</span>
+                        <span class="font-bold text-slate-700">${univ.name}</span>
+                    </div>
+                    <span class="font-black text-slate-900">${univ.price}</span>
+                </li>
+            `).join('');
+
+            // Chart Update
+            myChart.data.datasets[0].data = data.vals;
+            myChart.update();
+        }
+
+        window.onload = initChart;
+    </script>
+</body>
+</html>
