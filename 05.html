@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심층 분석 보고서: 케이팝 데몬 헌터스</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        .gradient-text { background: linear-gradient(90deg, #db2777, #ea580c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .section-card { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .quote-box { border-left: 4px solid #db2777; background: #fdf2f8; }
+        nav { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.8); }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- Navigation with Home Button -->
+    <nav class="fixed top-0 w-full z-50 border-b border-slate-200">
+        <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-slate-800 hover:text-pink-600 transition-colors font-bold">
+                <i class="fas fa-home text-xl"></i>
+                <span>홈으로</span>
+            </a>
+            <div class="text-xs font-bold text-slate-400 tracking-tighter uppercase">K-Pop Demon Hunters Analysis</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-[80vh] flex items-center justify-center overflow-hidden bg-slate-100">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10"></div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mt-16">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight text-slate-900">
+                글로벌 신드롬 <br><span class="gradient-text">'케이팝 데몬 헌터스'</span> 현상 해부
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-600 font-light italic">새로운 한류 패러다임의 서막과 문화적 진화</p>
+            <div class="mt-12 animate-bounce">
+                <i class="fas fa-chevron-down text-3xl text-pink-500 opacity-50"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-20 space-y-32">
+        
+        <!-- Section 1: Introduction -->
+        <section id="intro" class="space-y-6">
+            <h2 class="text-3xl font-bold flex items-center text-slate-800"><span class="w-8 h-1 bg-pink-500 mr-4"></span>1. 서론</h2>
+            <div class="grid md:grid-cols-2 gap-10 items-start">
+                <div class="space-y-4 text-slate-600">
+                    <p>넷플릭스 애니메이션 <strong class="text-slate-900">'케이팝 데몬 헌터스'</strong>는 단순한 흥행작을 넘어, 전 세계적인 문화 현상으로 자리매김하고 있습니다. 가상 아티스트 '헌트릭스'의 곡 'Golden'은 빌보드 '글로벌 200' 1위를 기록하며 전례 없는 파급력을 증명했습니다.</p>
+                    <p>본 보고서는 이 현상의 핵심 동력과 경제적 효과, 그리고 비판적 고찰을 통해 K-컬처의 미래를 전망합니다.</p>
+                </div>
+                <div class="section-card p-6 rounded-2xl">
+                    <h3 class="text-lg font-bold mb-4 text-pink-600">주요 지표 (Main KPIs)</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex justify-between border-b border-slate-100 pb-2"><span>넷플릭스 영화 1위</span> <span class="font-bold">41개국</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2"><span>빌보드 Global 200</span> <span class="font-bold">1위</span></li>
+                        <li class="flex justify-between border-b border-slate-100 pb-2"><span>빌보드 Hot 100</span> <span class="font-bold text-pink-600">6위</span></li>
+                        <li class="flex justify-between"><span>박물관 관람객 (상반기)</span> <span class="font-bold">270만 명</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Core Drivers -->
+        <section id="drivers" class="space-y-10">
+            <h2 class="text-3xl font-bold flex items-center text-slate-800"><span class="w-8 h-1 bg-orange-500 mr-4"></span>2. 성공의 핵심 동력</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="section-card p-8 rounded-2xl hover:border-pink-500 transition-all hover:shadow-lg">
+                    <div class="text-pink-600 text-3xl mb-4"><i class="fas fa-music"></i></div>
+                    <h3 class="text-xl font-bold mb-3">음악적 역전</h3>
+                    <p class="text-sm text-slate-500">영어 가사 속 한국어 믹스가 '힙'한 문화 자본으로 인식되는 언어적 권력 구도의 변화.</p>
+                </div>
+                <div class="section-card p-8 rounded-2xl hover:border-orange-500 transition-all hover:shadow-lg">
+                    <div class="text-orange-500 text-3xl mb-4"><i class="fas fa-scroll"></i></div>
+                    <h3 class="text-xl font-bold mb-3">한국적 서사</h3>
+                    <p class="text-sm text-slate-500">호작도, 사인검, 노리개 등 전통 요소를 현대적 판타지 액션으로 재해석.</p>
+                </div>
+                <div class="section-card p-8 rounded-2xl hover:border-blue-500 transition-all hover:shadow-lg">
+                    <div class="text-blue-600 text-3xl mb-4"><i class="fas fa-city"></i></div>
+                    <h3 class="text-xl font-bold mb-3">하이퍼 리얼리즘</h3>
+                    <p class="text-sm text-slate-500">식당 휴지 깔기, 컵라면 등 한국인의 일상을 포착한 세밀한 디테일의 힘.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Visual Data -->
+        <section id="data" class="space-y-10">
+            <div class="section-card p-10 rounded-3xl bg-slate-50 border-none shadow-none">
+                <h2 class="text-2xl font-bold mb-8 text-center italic text-slate-800">"대중은 무엇에 반응하는가?"</h2>
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <canvas id="keywordChart"></canvas>
+                    </div>
+                    <div class="space-y-6">
+                        <h3 class="text-xl font-bold text-pink-600">댓글 명사 빈도 분석</h3>
+                        <p class="text-slate-600">이미지 분석 결과, 대중의 반응에서 가장 높게 나타난 키워드는 <span class="text-pink-600 font-bold underline">문화, 한국, 수익, 자부심</span> 순이었습니다. 이는 작품의 성공이 단순한 시청을 넘어 국가 브랜드에 대한 정서적 고양으로 이어지고 있음을 시사합니다.</p>
+                        <div class="quote-box p-4 rounded-r-lg italic text-slate-700 font-medium">
+                            "이런 콘텐츠 덕에 손 안 대고 코 푼 거다... 그게 곧 소프트파워인 거고 이런 건 돈으로 안 되는 거"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Economic Impact -->
+        <section id="impact" class="space-y-10">
+            <h2 class="text-3xl font-bold flex items-center text-slate-800"><span class="w-8 h-1 bg-green-500 mr-4"></span>3. 파급 효과 분석</h2>
+            <div class="space-y-8">
+                <div class="grid md:grid-cols-3 gap-6 text-center">
+                    <div class="p-8 border border-slate-200 rounded-2xl bg-white">
+                        <div class="inline-block p-4 rounded-full bg-green-100 text-green-600 mb-4"><i class="fas fa-shopping-bag text-2xl"></i></div>
+                        <h4 class="font-bold mb-2 text-slate-800 text-lg">K-굿즈 열풍</h4>
+                        <p class="text-sm text-slate-500 italic">국립중앙박물관 '까치 호랑이 배지' 4회 완판</p>
+                    </div>
+                    <div class="p-8 border border-slate-200 rounded-2xl bg-white">
+                        <div class="inline-block p-4 rounded-full bg-blue-100 text-blue-600 mb-4"><i class="fas fa-mobile-alt text-2xl"></i></div>
+                        <h4 class="font-bold mb-2 text-slate-800 text-lg">산업 시너지</h4>
+                        <p class="text-sm text-slate-500 italic">삼성전자 캐릭터 마케팅 등 기술-콘텐츠 융합</p>
+                    </div>
+                    <div class="p-8 border border-slate-200 rounded-2xl bg-white">
+                        <div class="inline-block p-4 rounded-full bg-purple-100 text-purple-600 mb-4"><i class="fas fa-globe-asia text-2xl"></i></div>
+                        <h4 class="font-bold mb-2 text-slate-800 text-lg">외교적 자산</h4>
+                        <p class="text-sm text-slate-500 italic">외교장관 회담의 대화 촉진제 역할</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Conclusion -->
+        <section id="conclusion" class="pb-20">
+            <div class="bg-slate-900 p-12 rounded-3xl text-center text-white">
+                <h2 class="text-3xl font-bold mb-6">결론: 한류의 진화와 새로운 과제</h2>
+                <p class="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">
+                    단순한 콘텐츠 공급을 넘어, 이제는 글로벌 IP 공동 창작의 시대입니다. 동등한 파트너로서 생태계를 설계하고 창의적 자본을 지키는 국가적 전략이 필요한 시점입니다.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="px-6 py-2 border border-slate-700 rounded-full text-xs font-bold uppercase tracking-widest text-pink-400">IP Strategy</span>
+                    <span class="px-6 py-2 border border-slate-700 rounded-full text-xs font-bold uppercase tracking-widest text-slate-400">Soft Power</span>
+                    <span class="px-6 py-2 border border-slate-700 rounded-full text-xs font-bold uppercase tracking-widest text-slate-400">K-Culture 4.0</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="py-10 text-center border-t border-slate-200 text-slate-400 text-sm bg-white">
+        &copy; 2024 심층 분석 보고서: K-POP Demon Hunters Case Study
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('keywordChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['문화', '한국', '수익', '자부심', '재미', '전통'],
+                datasets: [{
+                    data: [35, 25, 15, 12, 8, 5],
+                    backgroundColor: [
+                        '#db2777', '#ea580c', '#0284c7', '#4f46e5', '#7c3aed', '#16a34a'
+                    ],
+                    borderWidth: 5,
+                    borderColor: '#ffffff',
+                    hoverOffset: 15
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: '#475569', padding: 20, font: { size: 14 } }
+                    },
+                    title: {
+                        display: true,
+                        text: '주요 댓글 키워드 분포',
+                        color: '#1e293b',
+                        font: { size: 18, weight: 'bold' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
