@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Data Analysis Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-12px);
+            background: rgba(255, 255, 255, 1);
+            border-color: #0ea5e9;
+            box-shadow: 0 20px 40px -15px rgba(14, 165, 233, 0.15);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-bg {
+            background: radial-gradient(circle at top right, #e0f2fe 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, #eef2ff 0%, transparent 40%);
+        }
+
+        .nav-link {
+            position: relative;
+            color: #64748b;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #0ea5e9;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #0ea5e9;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* 부드러운 스크롤 애니메이션 */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden hero-bg">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full z-50 px-8 py-5 flex justify-between items-center bg-white/70 backdrop-blur-lg border-b border-slate-200/50">
+        <div class="text-2xl font-black gradient-text tracking-tighter">DATA PORTFOLIO</div>
+        <nav class="hidden md:flex gap-10 text-sm font-bold uppercase tracking-wide">
+            <a href="#" class="nav-link">Home</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#about" class="nav-link">About</a>
+        </nav>
+        <div class="md:hidden text-2xl text-slate-800 cursor-pointer"><i class="fas fa-bars"></i></div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col justify-center items-center px-6 pt-20 text-center">
+        <div class="space-y-8 max-w-4xl">
+            <div class="inline-block px-4 py-1.5 bg-sky-100 text-sky-600 rounded-full font-bold text-xs uppercase tracking-widest mb-4">
+                Big Data Analysis Portfolio
+            </div>
+            <h1 class="text-5xl md:text-8xl font-black leading-[1.1] text-slate-900">
+                가치를 만드는<br>
+                <span class="gradient-text">데이터 분석</span>
+            </h1>
+            <div class="space-y-2 mt-4">
+                <p class="text-2xl md:text-3xl font-bold text-slate-700">부산여자고등학교 송가인</p>
+                <p class="text-slate-500 max-w-2xl mx-auto text-lg md:text-xl font-medium leading-relaxed">
+                    복잡한 숫자 속에서 우리 삶의 패턴을 발견하고 분석합니다.<br>
+                    빅데이터 분석 교과목을 통해 수행한 5가지 핵심 연구 기록입니다.
+                </p>
+            </div>
+            <div class="pt-8 flex gap-4 justify-center">
+                <a href="#projects" class="bg-slate-900 hover:bg-slate-800 text-white px-10 py-4 rounded-2xl font-bold shadow-xl shadow-slate-200 transition-all transform hover:-translate-y-1 active:scale-95 inline-block">
+                    분석 프로젝트 보기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+                <h3 class="text-4xl font-black text-slate-900 mb-4 tracking-tight">분석 리포트 <span class="text-sky-500">.</span></h3>
+                <p class="text-slate-500 text-lg font-medium">데이터 시각화와 통계적 모델링을 활용한 5가지 핵심 프로젝트</p>
+            </div>
+            <div class="text-slate-400 text-sm font-bold flex items-center gap-2">
+                <span class="w-8 h-[2px] bg-slate-200"></span>
+                CLICK TO EXPLORE
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <!-- Project 1 -->
+            <a href="01.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <div class="w-14 h-14 bg-rose-100 rounded-2xl flex items-center justify-center text-rose-500 mb-8 group-hover:bg-rose-500 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-car-side text-2xl"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-slate-800 mb-4">부산 연도별 음주운전</h4>
+                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">
+                    부산광역시 공공데이터를 기반으로 연도별 음주운전 사고 현황과 위험 지표를 도출했습니다.
+                </p>
+                <div class="flex items-center text-sky-600 font-bold group-hover:gap-4 transition-all">
+                    <span>View Report</span>
+                    <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                </div>
+            </a>
+
+            <!-- Project 2 -->
+            <a href="02.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <div class="w-14 h-14 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-500 mb-8 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-temperature-high text-2xl"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-slate-800 mb-4">지구 온난화 분석</h4>
+                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">
+                    글로벌 및 국내 기온 데이터를 분석하여 기후 변화의 속도와 패턴을 시각화했습니다.
+                </p>
+                <div class="flex items-center text-sky-600 font-bold group-hover:gap-4 transition-all">
+                    <span>View Report</span>
+                    <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                </div>
+            </a>
+
+            <!-- Project 3 -->
+            <a href="03.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <div class="w-14 h-14 bg-emerald-100 rounded-2xl flex items-center justify-center text-emerald-500 mb-8 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-chart-pie text-2xl"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-slate-800 mb-4">소득 분포 및 수준</h4>
+                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">
+                    평균·중위 소득 데이터를 정밀 분석하여 경제적 격차와 소득 분포를 통계적으로 도출했습니다.
+                </p>
+                <div class="flex items-center text-sky-600 font-bold group-hover:gap-4 transition-all">
+                    <span>View Report</span>
+                    <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                </div>
+            </a>
+
+            <!-- Project 4 -->
+            <a href="04.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <div class="w-14 h-14 bg-indigo-100 rounded-2xl flex items-center justify-center text-indigo-500 mb-8 group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-university text-2xl"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-slate-800 mb-4">지역별 학과 등록금</h4>
+                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">
+                    전국 대학 현황 데이터를 결합하여 지역별·학과별 교육 비용의 차이를 분석했습니다.
+                </p>
+                <div class="flex items-center text-sky-600 font-bold group-hover:gap-4 transition-all">
+                    <span>View Report</span>
+                    <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                </div>
+            </a>
+
+            <!-- Project 5 -->
+            <a href="05.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <div class="w-14 h-14 bg-red-100 rounded-2xl flex items-center justify-center text-red-500 mb-8 group-hover:bg-red-500 group-hover:text-white transition-all duration-300">
+                    <i class="fab fa-youtube text-2xl"></i>
+                </div>
+                <h4 class="text-2xl font-bold text-slate-800 mb-4">AI 윤리 유튜브 분석</h4>
+                <p class="text-slate-500 text-sm leading-relaxed mb-8 font-medium">
+                    유튜브 소셜 데이터를 마이닝하여 인공지능 윤리에 대한 대중의 관심도를 추출했습니다.
+                </p>
+                <div class="flex items-center text-sky-600 font-bold group-hover:gap-4 transition-all">
+                    <span>View Report</span>
+                    <i class="fas fa-long-arrow-alt-right ml-2"></i>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 bg-white border-t border-slate-100 text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-xl font-black text-slate-900 mb-6">DATA PORTFOLIO</div>
+            <p class="text-slate-400 text-sm mb-2 font-medium">부산여자고등학교 송가인 | 빅데이터 분석 포트폴리오</p>
+            <p class="text-slate-400 text-xs mb-8 font-medium">이 페이지는 교과목 최종 결과물로 제작되었습니다.</p>
+            <div class="flex justify-center gap-8 mb-10 text-slate-400">
+                <a href="#" class="hover:text-sky-600 transition-colors"><i class="fab fa-github text-xl"></i></a>
+                <a href="#" class="hover:text-sky-600 transition-colors"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="#" class="hover:text-sky-600 transition-colors"><i class="fas fa-envelope text-xl"></i></a>
+            </div>
+            <p class="text-slate-300 text-xs font-bold uppercase tracking-widest">© 2026. All Analytical Minds.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
