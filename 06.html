@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디지털 시대의 AI 및 정보 윤리 분석</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
+        body { font-family: 'Pretendard', sans-serif; scroll-behavior: smooth; }
+        .gradient-bg { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+        .table-auto td, .table-auto th { border: 1px solid #e2e8f0; padding: 14px; }
+        .highlight-text { color: #4f46e5; font-weight: 700; }
+        
+        .home-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .home-fab:hover { transform: scale(1.1) rotate(5deg); }
+        .keyword-tag { transition: all 0.2s; cursor: default; }
+        .keyword-tag:hover { transform: scale(1.1); background-color: #4f46e5; color: white; }
+        
+        .sentiment-bar { height: 12px; border-radius: 6px; overflow: hidden; display: flex; }
+        .sentiment-neg { background-color: #ef4444; height: 100%; }
+        .sentiment-pos { background-color: #10b981; height: 100%; }
+    </style>
+</head>
+<body id="top" class="bg-slate-50 text-slate-900">
+
+    <!-- Floating Home Button -->
+    <div class="home-fab">
+        <button onclick="scrollToSection('top')" class="w-14 h-14 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-indigo-700 focus:outline-none group">
+            <i class="fas fa-home text-xl"></i>
+            <span class="absolute right-16 bg-slate-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">메인으로</span>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="gradient-bg text-white py-24 px-6 text-center shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <i class="fas fa-network-wired text-9xl absolute -top-10 -left-10"></i>
+            <i class="fas fa-shield-alt text-9xl absolute -bottom-10 -right-10"></i>
+        </div>
+        <div class="max-w-4xl mx-auto relative z-10">
+            <span class="bg-indigo-500/30 text-indigo-200 px-4 py-1 rounded-full text-sm font-bold tracking-widest uppercase mb-4 inline-block border border-indigo-400/30">Big Data & Ethics Report</span>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">디지털 기술의 양면성:<br><span class="text-indigo-400">AI 윤리 및 정보 리터러시</span> 심층 진단</h1>
+            <p class="text-slate-400 text-xl font-light">작성자: 부산여자고등학교 송가인 | 작성일: 2026년 1월 15일</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-12">
+        
+        <!-- Navigation Buttons -->
+        <div class="flex flex-wrap justify-center gap-4 mb-20 sticky top-6 z-50">
+            <button onclick="scrollToSection('report1')" class="px-6 py-3 bg-white shadow-lg rounded-xl font-bold hover:bg-indigo-50 transition border border-indigo-100 flex items-center">
+                <i class="fas fa-database mr-2 text-indigo-600"></i> AI & 여론 분석
+            </button>
+            <button onclick="scrollToSection('report2')" class="px-6 py-3 bg-white shadow-lg rounded-xl font-bold hover:bg-red-50 transition border border-red-100 flex items-center">
+                <i class="fas fa-exclamation-triangle mr-2 text-red-600"></i> 가짜뉴스 & 리터러시
+            </button>
+            <button onclick="scrollToSection('report3')" class="px-6 py-3 bg-white shadow-lg rounded-xl font-bold hover:bg-blue-50 transition border border-blue-100 flex items-center">
+                <i class="fas fa-paint-brush mr-2 text-blue-600"></i> 생성형 AI & 창작 윤리
+            </button>
+        </div>
+
+        <!-- Section 1: AI Chatbot & Privacy Analysis -->
+        <section id="report1" class="mb-24 scroll-mt-24">
+            <div class="flex items-center mb-10">
+                <div class="w-16 h-16 bg-indigo-600 text-white rounded-2xl flex items-center justify-center text-3xl mr-6 shadow-xl">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold">1. AI 챗봇 판결과 정보 주체의 통제권</h2>
+                    <p class="text-slate-500 text-lg">국내 최초 AI 학습 데이터 적법성 판결에 따른 대중 심리 분석</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <!-- Sentiment Gauge -->
+                <div class="md:col-span-2 bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <h3 class="font-bold text-xl mb-6 flex justify-between items-center">
+                        여론 감성 분석 결과
+                        <span class="text-red-600 text-sm font-normal"><i class="fas fa-angry mr-1"></i>부정적 여론 압도</span>
+                    </h3>
+                    <div class="sentiment-bar mb-4">
+                        <div class="sentiment-neg" style="width: 92.2%;"></div>
+                        <div class="sentiment-pos" style="width: 7.8%;"></div>
+                    </div>
+                    <div class="flex justify-between text-sm font-bold mb-8">
+                        <div class="text-red-600">부정/불안 (92.2%)</div>
+                        <div class="text-emerald-600">긍정/기대 (0.5% 미만)</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-red-50 p-4 rounded-xl border border-red-100">
+                            <p class="text-xs text-red-800 font-bold mb-1">분노의 핵심 원인</p>
+                            <p class="text-sm text-slate-700 leading-snug">무단 데이터 수집 및 학습, 기술적 보복 심리, 솜방망이 처벌에 대한 반발</p>
+                        </div>
+                        <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100">
+                            <p class="text-xs text-indigo-800 font-bold mb-1">불안의 확산</p>
+                            <p class="text-sm text-slate-700 leading-snug">타 AI 서비스로의 불안 전이, 개인 민감 정보 비식별화 실패에 대한 우려</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Mini Stats -->
+                <div class="space-y-4">
+                    <div class="bg-slate-900 text-white p-6 rounded-3xl shadow-lg">
+                        <p class="text-slate-400 text-xs uppercase tracking-widest mb-2 font-bold">최다 빈도 키워드</p>
+                        <p class="text-3xl font-black mb-1">개인정보</p>
+                        <p class="text-indigo-400 text-lg font-bold">36회 언급</p>
+                    </div>
+                    <div class="bg-indigo-600 text-white p-6 rounded-3xl shadow-lg">
+                        <p class="text-indigo-200 text-xs uppercase tracking-widest mb-2 font-bold">법적 보상 만족도</p>
+                        <p class="text-3xl font-black mb-1">0.5%</p>
+                        <p class="text-indigo-200 text-sm">사법 시스템 불신 지수 극치</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Keyword Analysis -->
+            <div class="bg-white p-10 rounded-3xl shadow-xl border border-slate-100 mb-12">
+                <h3 class="text-2xl font-bold mb-8 text-indigo-700 flex items-center">
+                    <i class="fas fa-microchip mr-3"></i> AI 챗봇 여론 키워드 심층 분석
+                </h3>
+                <div class="flex flex-wrap gap-4 justify-center mb-10">
+                    <span class="keyword-tag bg-indigo-100 text-indigo-800 px-6 py-3 rounded-full text-2xl font-bold">개인정보 (36)</span>
+                    <span class="keyword-tag bg-slate-100 text-slate-700 px-5 py-2 rounded-full text-xl font-bold">정보 (11)</span>
+                    <span class="keyword-tag bg-red-100 text-red-700 px-5 py-2 rounded-full text-xl font-bold">벌금 (10)</span>
+                    <span class="keyword-tag bg-red-100 text-red-700 px-5 py-2 rounded-full text-xl font-bold">처벌 (10)</span>
+                    <span class="keyword-tag bg-slate-100 text-slate-700 px-4 py-2 rounded-full text-lg font-semibold">판사 (8)</span>
+                    <span class="keyword-tag bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-lg font-semibold">수집 (8)</span>
+                    <span class="keyword-tag bg-slate-100 text-slate-700 px-4 py-2 rounded-full text-base">유출 (7)</span>
+                    <span class="keyword-tag bg-slate-100 text-slate-700 px-4 py-2 rounded-full text-base">학습 (7)</span>
+                    <span class="keyword-tag bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm">제타 (6)</span>
+                    <span class="keyword-tag bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm">미국 (6)</span>
+                    <span class="keyword-tag bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm">동의 (6)</span>
+                    <span class="keyword-tag bg-slate-100 text-slate-700 px-3 py-1 rounded-full text-sm">솜방망이 (4)</span>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="border border-slate-200 p-6 rounded-2xl bg-slate-50">
+                        <h4 class="font-bold text-indigo-700 mb-3"><i class="fas fa-random mr-2"></i>데이터 재목적화</h4>
+                        <p class="text-sm text-slate-600">심리 분석 등 특정 목적 수집 데이터가 동의 없이 AI 학습용으로 전용되는 현상에 대한 비판</p>
+                    </div>
+                    <div class="border border-slate-200 p-6 rounded-2xl bg-slate-50">
+                        <h4 class="font-bold text-indigo-700 mb-3"><i class="fas fa-user-slash mr-2"></i>비식별화 실패</h4>
+                        <p class="text-sm text-slate-600">이름, 주소, 관계 정보가 학습 모델에 녹아들어 답변으로 재출력될 가능성에 대한 공포</p>
+                    </div>
+                    <div class="border border-slate-200 p-6 rounded-2xl bg-slate-50">
+                        <h4 class="font-bold text-indigo-700 mb-3"><i class="fas fa-lock-open mr-2"></i>통제권 상실</h4>
+                        <p class="text-sm text-slate-600">학습된 모델에서 본인의 데이터를 삭제하거나 수정을 요구하기 어려운 기술적 한계 지적</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Fake News & Literacy -->
+        <section id="report2" class="mb-24 scroll-mt-24">
+            <div class="flex items-center mb-10">
+                <div class="w-16 h-16 bg-red-600 text-white rounded-2xl flex items-center justify-center text-3xl mr-6 shadow-xl">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold">2. 가짜뉴스 확산과 리터러시 격차</h2>
+                    <p class="text-slate-500 text-lg">알고리즘 확증 편향과 정보 소외 계층의 구조적 위기</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+                    <h3 class="text-xl font-bold mb-6 text-red-600 flex items-center">
+                        <i class="fas fa-chart-bar mr-2"></i> 세대별 정보 평가 능력 (정규화 점수)
+                    </h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2 items-end"><span class="font-bold text-slate-700">2030 세대</span><span class="text-indigo-600 font-black">70.0</span></div>
+                            <div class="w-full bg-slate-100 h-6 rounded-full shadow-inner overflow-hidden">
+                                <div class="bg-indigo-500 h-full w-[70%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2 items-end"><span class="font-bold text-slate-700">60대 이상 세대</span><span class="text-red-600 font-black">40.0</span></div>
+                            <div class="w-full bg-slate-100 h-6 rounded-full shadow-inner overflow-hidden">
+                                <div class="bg-red-500 h-full w-[40%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="mt-8 text-sm text-slate-500 leading-relaxed italic border-t pt-4">
+                        * 노년층은 디지털 정보 접근성보다 <strong>'정보의 진위 판별 및 평가 역량'</strong>에서 큰 취약성을 보임.
+                    </p>
+                </div>
+                <div class="space-y-6">
+                    <div class="bg-red-50 p-6 rounded-3xl border border-red-100">
+                        <h4 class="font-bold text-red-900 mb-4 tracking-tight uppercase text-xs">핵심 담론 키워드 통계</h4>
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-red-200">
+                                <p class="text-xs text-slate-500 mb-1">가짜뉴스</p>
+                                <p class="text-2xl font-black text-red-600">32회</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-red-200">
+                                <p class="text-xs text-slate-500 mb-1">노년층</p>
+                                <p class="text-2xl font-black text-red-600">9회</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-red-200">
+                                <p class="text-xs text-slate-500 mb-1">정보평가능력</p>
+                                <p class="text-2xl font-black text-red-600">7회</p>
+                            </div>
+                            <div class="bg-white p-4 rounded-xl shadow-sm border border-red-200">
+                                <p class="text-xs text-slate-500 mb-1">알고리즘</p>
+                                <p class="text-2xl font-black text-red-600">언급</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900 p-6 rounded-3xl text-white shadow-xl">
+                        <h4 class="text-yellow-400 font-bold mb-2 italic">Structural Mechanism</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            사실 기반 정보 전달보다 음모론 및 특정 대상을 향한 공격적 프레임 형성에 집중. 1인 미디어의 무분별한 유통이 '분노'와 '보복 심리'를 자극함.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Generative AI & Creative Ethics -->
+        <section id="report3" class="mb-24 scroll-mt-24">
+            <div class="flex items-center mb-10">
+                <div class="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-3xl mr-6 shadow-xl">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold">3. 생성형 AI 창작 윤리와 데이터 주권</h2>
+                    <p class="text-slate-500 text-lg">'지브리풍 프로필' 유행을 통해 본 사회적 갈등 분석</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-10 rounded-3xl shadow-xl border border-slate-100">
+                <div class="flex flex-col md:flex-row gap-10">
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-6 text-blue-700">창작자 권리 침해 쟁점</h3>
+                        <div class="space-y-4">
+                            <div class="p-6 bg-blue-50 rounded-2xl border-l-4 border-blue-500">
+                                <h4 class="font-bold text-blue-900 mb-1">자기 파괴적 고갈 (Self-Destruction)</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">원본 창작자의 의욕 저하가 AI의 학습 소스 고갈로 이어지는 순환적 붕괴 현상에 대한 경고.</p>
+                            </div>
+                            <div class="p-6 bg-slate-50 rounded-2xl border-l-4 border-slate-400">
+                                <h4 class="font-bold text-slate-900 mb-1">군중심리 및 동질성 피로</h4>
+                                <p class="text-sm text-slate-600 leading-relaxed">개성 없는 맹목적 유행 편승에 대한 거부감 및 집단적 동질성에 대한 피로감 호소.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-bold mb-6 text-blue-700">데이터 주권과 착취</h3>
+                        <div class="relative bg-slate-900 text-white p-8 rounded-2xl overflow-hidden shadow-2xl">
+                            <i class="fas fa-quote-left text-4xl text-blue-500/30 absolute top-4 left-4"></i>
+                            <p class="text-lg font-bold leading-relaxed relative z-10 mb-4">
+                                "돈을 벌면서 수억 명의 말끔한 얼굴 데이터를 수집한 것임."
+                            </p>
+                            <p class="text-sm text-slate-400 text-right">- 유튜브 여론 분석 결과 중</p>
+                            <div class="mt-6 pt-6 border-t border-slate-700 text-sm">
+                                <span class="text-yellow-400 font-bold">Data Sovereignty:</span> 무료 서비스를 매개로 고품질 안면 데이터를 대규모 수집하는 기업의 행태에 대한 경각심 고조.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Synthesis: Comprehensive View -->
+        <section class="mb-24">
+             <div class="bg-indigo-600 rounded-3xl p-12 text-white shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl"></div>
+                <h2 class="text-3xl font-bold mb-8 flex items-center">
+                    <i class="fas fa-project-diagram mr-4"></i> 3대 핵심 분석 쟁점 요약
+                </h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/20">
+                        <h4 class="text-yellow-300 font-bold text-lg mb-2">사법 신뢰도 결여</h4>
+                        <p class="text-sm text-indigo-100">기술 범죄에 대한 솜방망이 처벌이 대중의 시스템 불신을 초래하고 보복 심리를 자극함.</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/20">
+                        <h4 class="text-yellow-300 font-bold text-lg mb-2">리터러시 불평등</h4>
+                        <p class="text-sm text-indigo-100">디지털 소외 계층인 노년층이 알고리즘 편향에 노출되며 민주적 담론 형성이 방해받음.</p>
+                    </div>
+                    <div class="bg-white/10 p-6 rounded-2xl backdrop-blur-sm border border-white/20">
+                        <h4 class="text-yellow-300 font-bold text-lg mb-2">윤리적 기술 거버넌스</h4>
+                        <p class="text-sm text-indigo-100">학습 데이터의 투명성과 창작자 보호가 결여된 기술 발전은 결국 창작 생태계의 고갈을 야기함.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Conclusion -->
+        <section class="text-center py-12 border-t border-slate-200">
+            <h2 class="text-4xl font-extrabold mb-8 text-indigo-950">사람 중심의 지속 가능한 AI 시대로</h2>
+            <p class="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-12">
+                본 분석 보고서는 단순히 기술의 발전을 관망하는 것을 넘어, 기술이 파괴하는 신뢰와 주권의 문제를 데이터로 입증하였습니다. <strong>강력한 징벌적 배상 제도</strong>와 <strong>체계적인 디지털 리터러시 교육</strong>, 그리고 <strong>데이터 주권 보장</strong>이 선행될 때 비로소 우리는 AI와 공존하는 성숙한 디지털 사회로 나아갈 수 있습니다.
+            </p>
+            <button onclick="scrollToSection('top')" class="px-10 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 transition shadow-xl">
+                보고서 상단으로 돌아가기
+            </button>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-500 py-20 border-t border-slate-900">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+            <div class="col-span-2">
+                <h2 class="text-2xl font-bold text-white mb-6">AI 및 정보 윤리 분석 리포트</h2>
+                <p class="text-sm leading-relaxed mb-6">본 리포트는 2026년 1월 유튜브 여론 데이터 및 세대별 리터러시 설문 데이터를 바탕으로 작성되었습니다. 모든 데이터 분석 결과는 가상의 사례 연구를 포함할 수 있습니다.</p>
+                <div class="flex gap-4">
+                    <span class="px-3 py-1 bg-slate-800 rounded text-xs">#AI_Ethics</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded text-xs">#Data_Sovereignty</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded text-xs">#Digital_Literacy</span>
+                </div>
+            </div>
+            <div class="text-right">
+                <p class="text-white font-bold mb-2">부산여자고등학교</p>
+                <p class="text-sm">송가인 학생 작성</p>
+                <p class="text-xs mt-10 opacity-50">&copy; 2026 Big Data Ethics Lab. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
